@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <title>E-Paper</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      background: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+    .topbar {
+      background: #b30000;
+      color: white;
+      padding: 10px 20px;
+      font-size: 18px;
+    }
+    .epaper-container {
+      max-width: 900px;
+      margin: auto;
+      padding: 10px;
+    }
+    .page {
+      margin-bottom: 15px;
+      background: white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    }
+    .page img {
+      width: 100%;
+      display: block;
+    }
+    .login-lock {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      margin-top: 20px;
+      border: 1px solid #ccc;
+    }
+    .login-lock a {
+      background: #b30000;
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">
+  🗞️ E-Paper | आज का अंक
+</div>
+
+<div class="epaper-container">
+
+  <!-- FREE PAGE -->
+  <div class="page">
+    <img src="/media/epaper/page1.jpg">
+  </div>
+
+  <div class="page">
+    <img src="/media/epaper/page2.jpg">
+  </div>
+
+  <!-- LOGIN REQUIRED -->
+  {% if not user.is_authenticated %}
+  <div class="login-lock">
+    <h3>आगे पढ़ने के लिए Login करें</h3>
+    <a href="/login/">Login</a>
+  </div>
+  {% else %}
+  <div class="page">
+    <img src="/media/epaper/page3.jpg">
+  </div>
+  <div class="page">
+    <img src="/media/epaper/page4.jpg">
+  </div>
+  {% endif %}
+
+</div>
+
+</body>
+</html>

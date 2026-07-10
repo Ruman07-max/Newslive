@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>प्रभात खबर - समाचार विस्तार</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header (same as index.html) -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <h1>प्रभात खबर</h1>
+                    <p>ताज़ा समाचार, सटीक खबर</p>
+                </div>
+                <div class="header-date">
+                    <span id="current-date"></span>
+                </div>
+            </div>
+            
+            <nav class="navbar">
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html">होम</a></li>
+                    <!-- Categories will be loaded dynamically -->
+                </ul>
+                <div class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- News Detail Content -->
+    <main class="container">
+        <div class="news-detail-container">
+            <!-- News will be loaded dynamically based on ID from URL -->
+            <div class="loading" id="news-loading">समाचार लोड हो रहा है...</div>
+            
+            <article class="news-article" id="news-article" style="display: none;">
+                <div class="news-meta">
+                    <span class="news-category" id="news-category">श्रेणी</span>
+                    <span class="news-date" id="news-date">तारीख</span>
+                </div>
+                
+                <h1 class="news-title" id="news-title">समाचार शीर्षक</h1>
+                
+                <div class="news-reporter" id="news-reporter">
+                    <i class="fas fa-user-edit"></i>
+                    <span id="reporter-name">रिपोर्टर का नाम</span>
+                </div>
+                
+                <div class="news-image" id="news-image-container">
+                    <!-- Image will be loaded dynamically -->
+                </div>
+                
+                <div class="news-content" id="news-content">
+                    <!-- News content will be loaded dynamically -->
+                </div>
+                
+                <div class="news-tags">
+                    <span>टैग:</span>
+                    <a href="#" class="tag" id="news-tag">समाचार</a>
+                </div>
+                
+                <div class="news-navigation">
+                    <a href="index.html" class="btn-back">
+                        <i class="fas fa-arrow-left"></i> सभी समाचार देखें
+                    </a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Related News Sidebar -->
+        <aside class="news-sidebar">
+            <h3 class="sidebar-title">संबंधित खबरें</h3>
+            <div class="related-news" id="related-news">
+                <!-- Related news will be loaded dynamically -->
+                <div class="loading">संबंधित खबरें लोड हो रही हैं...</div>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Footer (same as index.html) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>प्रभात खबर</h3>
+                    <p>विश्वसनीयता और सटीकता का पर्याय</p>
+                </div>
+                <div class="footer-links">
+                    <a href="#">हमारे बारे में</a>
+                    <a href="#">संपर्क करें</a>
+                    <a href="#">गोपनीयता नीति</a>
+                    <a href="#">विज्ञापन</a>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 प्रभात खबर. सर्वाधिकार सुरक्षित.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
