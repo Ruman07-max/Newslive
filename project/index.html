@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>भारत समाचार - प्रभात खबर</title>
+    <title>Rahnuma-Manzil</title>
+    {% load static %}
+<link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -1194,16 +1196,16 @@
             </div>
             
             <div class="header-actions">
-                <button id="subscribeBtn" style="background: var(--primary-red); color: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red-dark)'" onmouseout="this.style.backgroundColor='var(--primary-red)'">सदस्यता लें</button>
+                <button id="subscribeBtn" style="background: var(--primary-red); color: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red-dark)'" onmouseout="this.style.backgroundColor='var(--primary-red)'">سبسکرائب کریں</button>
                 <a href="epaper" class="nav-epaper-link" style="display: inline-flex; align-items: center; color: var(--primary-red); font-weight: 600; text-decoration: none; margin-left: 15px; padding: 8px 15px; border: 2px solid var(--primary-red); border-radius: 4px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red)'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--primary-red)'">
                     <i class="fas fa-newspaper" style="margin-right: 8px;"></i>
-                    ई-पेपर
+                   ای پیپر
                 </a>
             </div>
         </div>
         
         <div class="logo-container">
-            <a href="#" class="logo">Rahnuma Manzil</a>
+            <a href="#" class="logo">رهنما منزل</a>
             
         </div>
 <!--         
@@ -1235,7 +1237,8 @@
     <main class="main-container">
         <!-- LEFT COLUMN - SMALL NEWS WITH IMAGES -->
         <section class="left-column" aria-label="ताज़ा खबरें">
-            <h2 class="section-title">ताज़ा खबरें</h2>
+            <h2 class="section-title"> تازہ خبریں
+</h2>
             <div id="smallNewsContainer">
                 <!-- ENHANCEMENT: Small news now includes images -->
                 <div class="loading">समाचार लोड हो रहे हैं...</div>
@@ -1243,10 +1246,10 @@
             
             <!-- ENHANCEMENT: Added weather widget in left column -->
             <div class="sidebar-widget weather-widget">
-                <h3 class="widget-title">आज का मौसम</h3>
+                <h3 class="widget-title">آج کا موسم</h3>
                 <div class="temperature" id="weatherTemp">32°C</div>
-                <div class="weather-desc" id="weatherDesc">आंशिक रूप से धूप</div>
-                <div style="font-size: 14px; color: var(--medium-gray);">नई दिल्ली</div>
+                <div class="weather-desc" id="weatherDesc">جزوی طور پر دھوپ</div>
+                <div style="font-size: 14px; color: var(--medium-gray);">رانچی</div>
             </div>
         </section>
         
@@ -1258,7 +1261,7 @@
             
             <!-- ENHANCEMENT: Additional news section -->
             <div style="margin-top: 40px;">
-                <h2 class="section-title">विशेष रिपोर्ट</h2>
+                <h2 class="section-title">خصوصی رپورٹ</h2>
                 <div id="featuredNewsContainer">
                     <!-- Additional news can be loaded here -->
                 </div>
@@ -1267,7 +1270,7 @@
         
         <!-- RIGHT COLUMN - ENHANCED SIDEBAR -->
         <section class="right-column" aria-label="प्रमुख खबरें और विज्ञापन">
-            <h2 class="section-title">प्रमुख खबरें</h2>
+            <h2 class="section-title">اہم خبریں</h2>
             <div id="mediumNewsContainer">
                 <div class="loading">समाचार लोड हो रहे हैं...</div>
             </div>
@@ -1284,7 +1287,7 @@
             
             <!-- ENHANCEMENT: Quick links widget -->
             <div class="sidebar-widget">
-                <h3 class="widget-title">त्वरित लिंक</h3>
+                <h3 class="widget-title">فوری روابط</h3>
                 <ul class="footer-links" style="border: none; padding: 0;">
                     <li><a href="#"><i class="fas fa-calendar-alt"></i> आज की तारीख</a></li>
                    <li>
@@ -1302,8 +1305,8 @@
     
     <!-- E-PAPER SECTION ENHANCEMENT -->
     <section class="epaper-section" id="epaper-section">
-        <h2 class="section-title">ई-अखबार</h2>
-        <p style="color: var(--medium-gray); margin-bottom: 20px; font-size: 16px;">आज के अखबारों का डिजिटल संस्करण</p>
+        <h2 class="section-title">ای پیپر</h2>
+        <p style="color: var(--medium-gray); margin-bottom: 20px; font-size: 16px;">آج کے اخبارات کا ای پیپر</p>
         <div id="epaperContainer" class="epaper-grid">
             <div class="loading">ई-अखबार लोड हो रहा है...</div>
         </div>
@@ -1313,9 +1316,9 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>हमारे बारे में</h3>
+                <h3>ہمارے بارے میں</h3>
                 <p style="color: #ccc; line-height: 1.6; font-size: 15px;">
-                    भारत समाचार देश का प्रमुख हिंदी समाचार पोर्टल है। हम सटीक, निष्पक्ष और त्वरित समाचार प्रदान करने के लिए प्रतिबद्ध हैं।
+                    رہنما منزل ایک معتبر اردو نیوز ویب سائٹ اور اخبار ہے، جو اپنے قارئین تک بروقت، مستند اور غیر جانبدار خبریں پہنچانے کے لیے پُرعزم ہے۔ ہم قومی، بین الاقوامی، ریاستی، مقامی، کھیل، کاروبار اور دیگر اہم شعبوں کی تازہ ترین خبریں ذمہ داری اور صحافتی اصولوں کے مطابق پیش کرتے ہیں، تاکہ ہمارے قارئین ہر لمحہ باخبر رہیں۔
                 </p>
                 <div class="footer-social">
                     <a href="#" aria-label="फेसबुक"><i class="fab fa-facebook-f"></i></a>
@@ -1326,7 +1329,7 @@
             </div>
             
             <div class="footer-section">
-                <h3>त्वरित लिंक</h3>
+                <h3>فوری روابط</h3>
                 <ul class="footer-links">
                     <li><a href="#"><i class="fas fa-chevron-right"></i> होम पेज</a></li>
                     <li><a href="#"><i class="fas fa-chevron-right"></i> देश</a></li>
@@ -1338,17 +1341,17 @@
             </div>
             
             <div class="footer-section">
-                <h3>संपर्क करें</h3>
+                <h3>رابطہ کریں</h3>
                 <ul class="footer-links">
-                    <li><a href="mailto:contact@bharatsamachar.com"><i class="fas fa-envelope"></i> contact@bharatsamachar.com</a></li>
-                    <li><a href="tel:+911234567890"><i class="fas fa-phone"></i> +91 12345 67890</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> दिल्ली, भारत</a></li>
-                    <li><a href="#"><i class="fas fa-fax"></i> फैक्स: +91 12345 67891</a></li>
+                    <li><a href="mozammilalam2010@gmail.com"><i class="fas fa-envelope"></i> mozammilalam2010@gmail.com</a></li>
+                    <li><a href="tel:+917004381963"><i class="fas fa-phone"></i> +917004381963</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> राँची, झारखंड</a></li>
+                    <li><a href="+917004381963"><i class="fas fa-fax"></i> फैक्स: +917004381963</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
-                <h3>सेवाएँ</h3>
+                <h3>خدمات</h3>
                 <ul class="footer-links">
                     <li><a href="#"><i class="fas fa-bullhorn"></i> विज्ञापन दें</a></li>
                     <li><a href="#"><i class="fas fa-newspaper"></i> प्रिंट सब्सक्रिप्शन</a></li>
@@ -1367,15 +1370,15 @@
         
         <div class="footer-bottom">
             <div class="footer-legal">
-                <a href="#">गोपनीयता नीति</a>
-                <a href="#">उपयोग की शर्तें</a>
-                <a href="#">साइटमैप</a>
-                <a href="#">डिस्क्लेमर</a>
-                <a href="#">संपर्क करें</a>
+                <a href="#">رازداری کی پالیسی</a>
+                <a href="#">استعمال کی شرائط</a>
+                <a href="#">سائٹ میپ</a>
+                <a href="#">اعلانِ دستبرداری</a>
+                <a href="#">رابطہ کریں</a>
             </div>
             <div class="copyright">
-                © 2024 भारत समाचार. सर्वाधिकार सुरक्षित।<br>
-                इस वेबसाइट की सामग्री का पुनरुत्पादन प्रतिबंधित है।
+               © 2026 رہنما منزل۔ جملہ حقوق محفوظ ہیں۔           <br>
+               اس ویب سائٹ پر شائع ہونے والا تمام مواد، تصاویر اور دیگر معلومات رہنما منزل کی ملکیت ہیں۔ پیشگی تحریری اجازت کے بغیر اس مواد کی نقل، اشاعت یا کسی بھی شکل میں دوبارہ استعمال کی اجازت نہیں ہے۔
             </div>
         </div>
     </footer>

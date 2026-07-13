@@ -1,7 +1,28 @@
+# Virtual Environments
 backend_env/
 venv/
+.venv/
+
+# Python
 __pycache__/
 *.pyc
+
+# Database
 db.sqlite3
+
+# Environment Variables
 .env
+
+# Static & Media Files
 staticfiles/
+media/
+
+# Node
+node_modules/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db

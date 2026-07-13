@@ -4,24 +4,25 @@ Django settings for backend project.
 
 from pathlib import Path
 import os
+from decouple import config
 
 # ---------------- BASE DIR ----------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # ---------------- SECURITY ----------------
-SECRET_KEY = os.environ.get(
+# ---------------- SECURITY ----------------
+SECRET_KEY = config(
     "SECRET_KEY",
-    "django-insecure-CHANGE-THIS-IN-PRODUCTION"
+    default="django-insecure-CHANGE-THIS-IN-PRODUCTION"
 )
 
-DEBUG = False
+DEBUG = config("DEBUG", default=False, cast=bool)
 
-ALLOWED_HOSTS = [
-    "*"
-]
-
-
+ALLOWED_HOSTS = config(
+    "ALLOWED_HOSTS",
+    default="127.0.0.1,localhost"
+).split(",")
 # ---------------- APPLICATIONS ----------------
 INSTALLED_APPS = [
 
@@ -48,6 +49,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
 
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
 
@@ -115,19 +117,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 # ---------------- DATABASE ----------------
 
+
+
+import dj_database_url
+
 DATABASES = {
-
-    'default': {
-
-        'ENGINE': 'django.db.backends.sqlite3',
-
-        'NAME': BASE_DIR / 'db.sqlite3',
-
-    }
-
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+    )
 }
-
-
 
 # ---------------- PASSWORD VALIDATION ----------------
 
@@ -174,6 +173,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
