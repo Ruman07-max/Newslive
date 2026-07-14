@@ -36,7 +36,7 @@ class EpaperList(View):
         epapers_qs = Epaper.objects.all().order_by('-publish_date')
         epapers_list = []
         for e in epapers_qs:
-            pdf_url = request.build_absolute_uri(settings.MEDIA_URL + e.pdf.name) if e.pdf else None
+            pdf_url = e.pdf.url if e.pdf else None
             epapers_list.append({
                 'id': e.id,
                 'title': e.title,
@@ -44,7 +44,8 @@ class EpaperList(View):
                 'pdf': pdf_url
             })
         return JsonResponse(epapers_list, safe=False)
-    # 🔥 WEATHER API
+
+# ---------------- WEATHER API ----------------
 class WeatherAPI(APIView):
     def get(self, request):
         data = {
@@ -53,7 +54,7 @@ class WeatherAPI(APIView):
             "condition": "Sunny"
         }
         return JsonResponse(data)
-    
-    # ---------------- HOME PAGE ----------------
+
+# ---------------- HOME PAGE ----------------
 def home(request):
     return render(request, 'index.html')
