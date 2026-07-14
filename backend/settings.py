@@ -37,11 +37,12 @@ INSTALLED_APPS = [
     # Third party
     'rest_framework',
     'corsheaders',
+    'cloudinary_storage',
+    'cloudinary',
 
     # Local app
     'news_app',
 ]
-
 
 # ---------------- MIDDLEWARE ----------------
 MIDDLEWARE = [
@@ -177,11 +178,17 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 
-# ---------------- MEDIA FILES ----------------
+# ---------------- MEDIA FILES (CLOUDINARY) ----------------
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
+    'API_KEY': config('CLOUDINARY_API_KEY', default=''),
+    'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
-
-MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
