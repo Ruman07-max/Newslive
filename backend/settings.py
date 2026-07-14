@@ -178,8 +178,8 @@ CLOUDINARY_STORAGE = {
     'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME', default=''),
     'API_KEY': config('CLOUDINARY_API_KEY', default=''),
     'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
+    'RESOURCE_TYPE': 'auto',
 }
-
 MEDIA_URL = '/media/'
 
 
