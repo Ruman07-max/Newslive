@@ -11,7 +11,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # ---------------- SECURITY ----------------
-# ---------------- SECURITY ----------------
 SECRET_KEY = config(
     "SECRET_KEY",
     default="django-insecure-CHANGE-THIS-IN-PRODUCTION"
@@ -23,6 +22,8 @@ ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS",
     default="127.0.0.1,localhost"
 ).split(",")
+
+
 # ---------------- APPLICATIONS ----------------
 INSTALLED_APPS = [
 
@@ -43,6 +44,7 @@ INSTALLED_APPS = [
     # Local app
     'news_app',
 ]
+
 
 # ---------------- MIDDLEWARE ----------------
 MIDDLEWARE = [
@@ -68,11 +70,9 @@ MIDDLEWARE = [
 
 # ---------------- CORS SETTINGS ----------------
 
-# React frontend ke liye
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOW_CREDENTIALS = True
-
 
 
 # ---------------- URL / TEMPLATES ----------------
@@ -115,10 +115,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 
-
 # ---------------- DATABASE ----------------
-
-
 
 import dj_database_url
 
@@ -128,6 +125,7 @@ DATABASES = {
         conn_max_age=600,
     )
 }
+
 
 # ---------------- PASSWORD VALIDATION ----------------
 
@@ -156,7 +154,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
 # ---------------- LANGUAGE / TIME ----------------
 
 LANGUAGE_CODE = 'en-us'
@@ -168,14 +165,11 @@ USE_I18N = True
 USE_TZ = True
 
 
-
 # ---------------- STATIC FILES ----------------
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 
 # ---------------- MEDIA FILES (CLOUDINARY) ----------------
@@ -186,10 +180,19 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': config('CLOUDINARY_API_SECRET', default=''),
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
 MEDIA_URL = '/media/'
 
+
+# ---------------- STORAGES (Django 5.1+/6.0 New Format) ----------------
+
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 
 # ---------------- DEFAULT PK ----------------
