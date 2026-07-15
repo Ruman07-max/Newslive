@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary_storage.storage import RawMediaCloudinaryStorage
 
 # ---------------- CATEGORY ----------------
 class Category(models.Model):
@@ -25,11 +26,12 @@ class News(models.Model):
         return self.title
 
 
-# ---------------- EPAPER ----------------
 class Epaper(models.Model):
     title = models.CharField(max_length=200)
-    pdf = models.FileField(upload_to='epaper/')  # PDFs saved in media/epaper/
+    pdf = models.FileField(
+        upload_to='epaper/',
+        storage=RawMediaCloudinaryStorage()
+    )  # PDFs saved in Cloudinary as raw files
     publish_date = models.DateField()  # manually select publish date in admin
-
     def __str__(self):
         return self.title
