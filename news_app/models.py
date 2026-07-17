@@ -11,7 +11,7 @@ class Category(models.Model):
 
 # ---------------- NEWS ----------------
 class News(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=500)
     description = models.TextField()
     category = models.ForeignKey(
         Category,
