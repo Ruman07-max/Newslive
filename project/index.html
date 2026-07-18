@@ -84,7 +84,7 @@
 
         .logo-container {
             text-align: center;
-            padding: 20px 0 15px;
+            padding: 30px 20px 25px;
             position: relative;
         }
 
@@ -1196,16 +1196,16 @@
             </div>
             
             <div class="header-actions">
-                <button id="subscribeBtn" style="background: var(--primary-red); color: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red-dark)'" onmouseout="this.style.backgroundColor='var(--primary-red)'">سبسکرائب کریں</button>
+                <button id="subscribeBtn" style="background: var(--primary-red); color: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red-dark)'" onmouseout="this.style.backgroundColor='var(--primary-red)'">Subscribe</button>
                 <a href="epaper" class="nav-epaper-link" style="display: inline-flex; align-items: center; color: var(--primary-red); font-weight: 600; text-decoration: none; margin-left: 15px; padding: 8px 15px; border: 2px solid var(--primary-red); border-radius: 4px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red)'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--primary-red)'">
                     <i class="fas fa-newspaper" style="margin-right: 8px;"></i>
-                   ای پیپر
+                  E-Paper
                 </a>
             </div>
         </div>
         
         <div class="logo-container">
-            <a href="#" class="logo">رهنما منزل</a>
+           <a href="#" class="logo"><img src="/static/rahnuma-logo.jpeg" alt="Rahnuma Manzil" style="max-height: 130px; width: auto; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid #e5e5e5;"></a>
             
         </div>
 <!--         
@@ -1237,7 +1237,7 @@
     <main class="main-container">
         <!-- LEFT COLUMN - SMALL NEWS WITH IMAGES -->
         <section class="left-column" aria-label="ताज़ा खबरें">
-            <h2 class="section-title"> تازہ خبریں
+            <h2 class="section-title"> News Updates
 </h2>
             <div id="smallNewsContainer">
                 <!-- ENHANCEMENT: Small news now includes images -->
@@ -1261,7 +1261,7 @@
             
             <!-- ENHANCEMENT: Additional news section -->
             <div style="margin-top: 40px;">
-                <h2 class="section-title">خصوصی رپورٹ</h2>
+                <h2 class="section-title">Special Report</h2>
                 <div id="featuredNewsContainer">
                     <!-- Additional news can be loaded here -->
                 </div>
@@ -1270,7 +1270,7 @@
         
         <!-- RIGHT COLUMN - ENHANCED SIDEBAR -->
         <section class="right-column" aria-label="प्रमुख खबरें और विज्ञापन">
-            <h2 class="section-title">اہم خبریں</h2>
+            <h2 class="section-title">Top News</h2>
             <div id="mediumNewsContainer">
                 <div class="loading">समाचार लोड हो रहे हैं...</div>
             </div>
@@ -1287,17 +1287,17 @@
             
             <!-- ENHANCEMENT: Quick links widget -->
             <div class="sidebar-widget">
-                <h3 class="widget-title">فوری روابط</h3>
+                <h3 class="widget-title">Quick Links</h3>
                 <ul class="footer-links" style="border: none; padding: 0;">
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i> आज की तारीख</a></li>
+                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Today's Date</a></li>
                    <li>
     <a href="https://www.nseindia.com/" target="_blank">
-        <i class="fas fa-rupee-sign"></i> शेयर बाजार
+        <i class="fas fa-rupee-sign"></i> Stock Market
     </a>
 </li>
 
-                    <li><a href="#"><i class="fas fa-cloud-sun"></i> मौसम अपडेट</a></li>
-                    <li><a href="#epaper-section"><i class="fas fa-newspaper"></i> ई-अखबार</a></li>
+                    <li><a href="https://mausam.imd.gov.in/"><i class="fas fa-cloud-sun"></i>Weather Update</a></li>
+                    <li><a href="#epaper-section"><i class="fas fa-newspaper"></i>E-Paper</a></li>
                 </ul>
             </div>
         </section>
@@ -1305,10 +1305,10 @@
     
     <!-- E-PAPER SECTION ENHANCEMENT -->
     <section class="epaper-section" id="epaper-section">
-        <h2 class="section-title">ای پیپر</h2>
-        <p style="color: var(--medium-gray); margin-bottom: 20px; font-size: 16px;">آج کے اخبارات کا ای پیپر</p>
+        <h2 class="section-title">E-Paper</h2>
+        <p style="color: var(--medium-gray); margin-bottom: 20px; font-size: 16px;">Today's E-Paper</p>
         <div id="epaperContainer" class="epaper-grid">
-            <div class="loading">ई-अखबार लोड हो रहा है...</div>
+            <div class="loading">Loading E-Paper...</div>
         </div>
     </section>
     
@@ -1316,7 +1316,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
-                <h3>ہمارے بارے میں</h3>
+                <h3>About Us</h3>
                 <p style="color: #ccc; line-height: 1.6; font-size: 15px;">
                     رہنما منزل ایک معتبر اردو نیوز ویب سائٹ اور اخبار ہے، جو اپنے قارئین تک بروقت، مستند اور غیر جانبدار خبریں پہنچانے کے لیے پُرعزم ہے۔ ہم قومی، بین الاقوامی، ریاستی، مقامی، کھیل، کاروبار اور دیگر اہم شعبوں کی تازہ ترین خبریں ذمہ داری اور صحافتی اصولوں کے مطابق پیش کرتے ہیں، تاکہ ہمارے قارئین ہر لمحہ باخبر رہیں۔
                 </p>
@@ -1329,41 +1329,41 @@
             </div>
             
             <div class="footer-section">
-                <h3>فوری روابط</h3>
+                <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> होम पेज</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> देश</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> विदेश</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> राजनीति</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> खेल</a></li>
-                    <li><a href="#epaper-section"><i class="fas fa-chevron-right"></i> ई-अखबार</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i>Country</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> World</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Politics</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Sports</a></li>
+                    <li><a href="#epaper-section"><i class="fas fa-chevron-right"></i>E-Paper</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
-                <h3>رابطہ کریں</h3>
+                <h3>Contact Us</h3>
                 <ul class="footer-links">
-                    <li><a href="mozammilalam2010@gmail.com"><i class="fas fa-envelope"></i> mozammilalam2010@gmail.com</a></li>
+                    <li><a href="rahnumamanzilprd@gmail.com"><i class="fas fa-envelope"></i>rahnumamanzilprd@gmail.com</a></li>
                     <li><a href="tel:+917004381963"><i class="fas fa-phone"></i> +917004381963</a></li>
-                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> राँची, झारखंड</a></li>
-                    <li><a href="+917004381963"><i class="fas fa-fax"></i> फैक्स: +917004381963</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i>Ranchi, Jharkhand</a></li>
+                    <li><a href="+917004381963"><i class="fas fa-fax"></i>Fax: +917004381963</a></li>
                 </ul>
             </div>
             
             <div class="footer-section">
-                <h3>خدمات</h3>
+                <h3>Services</h3>
                 <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-bullhorn"></i> विज्ञापन दें</a></li>
-                    <li><a href="#"><i class="fas fa-newspaper"></i> प्रिंट सब्सक्रिप्शन</a></li>
-                    <li><a href="#"><i class="fas fa-mobile-alt"></i> मोबाइल ऐप</a></li>
-                    <li><a href="#"><i class="fas fa-rss"></i> आरएसएस फ़ीड</a></li>
-                    <li><a href="#"><i class="fas fa-search"></i> आर्काइव</a></li>
+                    <li><a href="#"><i class="fas fa-bullhorn"></i>Advertise</a></li>
+                    <li><a href="#"><i class="fas fa-newspaper"></i> Subscription</a></li>
+                    <li><a href="#"><i class="fas fa-mobile-alt"></i>  App</a></li>
+                    <li><a href="#"><i class="fas fa-rss"></i> RSS Feed</a></li>
+                    <li><a href="#"><i class="fas fa-search"></i> Archive</a></li>
                 </ul>
                 
                 <!-- ENHANCEMENT: Footer ad placeholder -->
                 <div class="footer-ad">
                     <i class="fas fa-ad" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
-                    <div style="font-size: 14px;">विज्ञापन के लिए संपर्क करें</div>
+                    <div style="font-size: 14px;">Contact for Advertising</div>
                 </div>
             </div>
         </div>
@@ -1394,8 +1394,8 @@
                 समाचार का पूरा विवरण यहाँ दिखाया जाएगा।
             </p>
             <div id="modalMeta" class="modal-meta">
-                <span id="modalReporter">रिपोर्टर: ज्ञात स्रोत</span>
-                <span id="modalDate">23 मई 2024</span>
+                <span id="modalReporter">Reporter: Known Source</span>
+                <span id="modalDate">23 May 2024</span>
             </div>
         </div>
     </div>
@@ -1460,26 +1460,31 @@ const MEDIA_BASE_URL = '';
         }
         
         // ENHANCEMENT: Update current date and time with better format
-        function updateDateTime() {
-            try {
-                const now = new Date();
-                const options = { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                };
-                const dateTimeStr = now.toLocaleDateString('hi-IN', options);
-                currentDateTime.textContent = dateTimeStr + ' IST';
-            } catch (error) {
-                console.error('Error updating date/time:', error);
-                currentDateTime.textContent = new Date().toLocaleDateString('hi-IN');
-            }
-        }
-        
+       function updateDateTime() {
+    try {
+        const now = new Date();
+
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: true,
+            timeZone: 'Asia/Kolkata',
+            timeZoneName: 'short'
+        };
+
+        const dateTimeStr = now.toLocaleString('en-IN', options);
+
+        currentDateTime.textContent = dateTimeStr;
+
+    } catch (error) {
+        console.error('Error updating date/time:', error);
+        currentDateTime.textContent = new Date().toLocaleDateString('en-IN');
+    }
+}
         // ENHANCEMENT: Load weather data
         async function loadWeather() {
             try {
