@@ -2044,7 +2044,13 @@ const MEDIA_BASE_URL = '';
                     var slot = document.getElementById('adSlot-' + position);
                     var content = document.getElementById('adContent-' + position);
                     if (slot && content) {
-                        content.innerHTML = '<a href="' + (ad.link_url || '#') + '" target="_blank" rel="noopener"><img src="' + ad.image + '" alt="' + ad.title + '" style="width:100%; border-radius:6px;"></a>';
+                        var mediaHtml = '';
+                        if (ad.video) {
+                            mediaHtml = '<video src="' + ad.video + '" autoplay loop muted playsinline style="width:100%; border-radius:6px;"></video>';
+                        } else if (ad.image) {
+                            mediaHtml = '<img src="' + ad.image + '" alt="' + ad.title + '" style="width:100%; border-radius:6px;">';
+                        }
+                        content.innerHTML = '<a href="' + (ad.link_url || '#') + '" target="_blank" rel="noopener">' + mediaHtml + '</a>';
                         slot.style.display = 'block';
                     }
                 }

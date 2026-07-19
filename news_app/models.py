@@ -1,5 +1,5 @@
 from django.db import models
-from cloudinary_storage.storage import RawMediaCloudinaryStorage
+from cloudinary_storage.storage import RawMediaCloudinaryStorage, VideoMediaCloudinaryStorage
 
 # ---------------- CATEGORY ----------------
 class Category(models.Model):
@@ -45,7 +45,8 @@ class Advertisement(models.Model):
         ('in_feed', 'News ke beech me'),
     ]
     title = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='ads/')
+    image = models.ImageField(upload_to='ads/', blank=True, null=True)
+    video = models.FileField(upload_to='ads_videos/', blank=True, null=True, storage=VideoMediaCloudinaryStorage(), help_text='MP4 video (image ya vidio dono me se aik koi )')
     link_url = models.URLField(blank=True, null=True)
     position = models.CharField(max_length=20, choices=POSITION_CHOICES, default='sidebar')
     is_active = models.BooleanField(default=True)

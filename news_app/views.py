@@ -71,6 +71,7 @@ class AdvertisementList(View):
                 'id': a.id,
                 'title': a.title,
                 'image': request.build_absolute_uri(a.image.url) if a.image else None,
+                'video': request.build_absolute_uri(a.video.url) if a.video else None,
                 'link_url': a.link_url,
                 'position': a.position,
             })
