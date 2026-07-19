@@ -1216,6 +1216,9 @@
            <a href="#" class="logo"><img src="/static/rahnuma-logo.jpeg" alt="Rahnuma Manzil" style="max-height: 130px; width: auto; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid #e5e5e5;"></a>
             
         </div>
+        <div id="adSlot-header" style="display:none; text-align:center; margin:15px auto; max-width:900px;">
+            <div id="adContent-header"></div>
+        </div>
 <!--         
         NEWS TICKER ENHANCEMENT
         <div class="news-ticker">
@@ -1266,6 +1269,9 @@
             <div id="bigNewsContainer">
                 <div class="news-placeholder"></div>
             </div>
+            <div id="adSlot-in_feed" style="display:none; margin:25px 0;">
+                <div id="adContent-in_feed"></div>
+            </div>
             
             <!-- ENHANCEMENT: Additional news section -->
             <div style="margin-top: 40px;">
@@ -1284,14 +1290,11 @@
             </div>
             
             <!-- ENHANCEMENT: Professional ad placeholder -->
-            <!-- <div class="sidebar-widget">
-                <h3 class="widget-title">विज्ञापन</h3>
-                <div class="ad-placeholder">
-                    <i class="fas fa-ad"></i>
-                    <div>यहाँ आपका विज्ञापन हो सकता है</div>
-                    <div style="font-size: 14px; margin-top: 10px;">संपर्क: advertising@bharatsamachar.com</div>
+            <div class="sidebar-widget" id="adSlot-sidebar" style="display:none;">
+                <h3 class="widget-title">Advertisement</h3>
+                <div class="ad-placeholder" id="adContent-sidebar" style="height:auto; padding:0; background:none;">
                 </div>
-            </div> -->
+            </div>
             
             <!-- ENHANCEMENT: Quick links widget -->
             <div class="sidebar-widget">
@@ -1369,9 +1372,8 @@
                 </ul>
                 
                 <!-- ENHANCEMENT: Footer ad placeholder -->
-                <div class="footer-ad">
-                    <i class="fas fa-ad" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
-                    <div style="font-size: 14px;">Contact for Advertising</div>
+                <div class="footer-ad" id="adSlot-footer" style="display:none;">
+                    <div id="adContent-footer"></div>
                 </div>
             </div>
         </div>
@@ -2028,5 +2030,27 @@ const MEDIA_BASE_URL = '';
             }
         }, true);
     </script>
-</body>
+
 </html>
+<script>
+(function() {
+    var positions = ['header','sidebar','footer','in_feed'];
+    positions.forEach(function(position) {
+        fetch('/api/ads/?position=' + position)
+            .then(function(r){ return r.json(); })
+            .then(function(ads){
+                if (ads && ads.length > 0) {
+                    var ad = ads[0];
+                    var slot = document.getElementById('adSlot-' + position);
+                    var content = document.getElementById('adContent-' + position);
+                    if (slot && content) {
+                        content.innerHTML = '<a href="' + (ad.link_url || '#') + '" target="_blank" rel="noopener"><img src="' + ad.image + '" alt="' + ad.title + '" style="width:100%; border-radius:6px;"></a>';
+                        slot.style.display = 'block';
+                    }
+                }
+            })
+            .catch(function(err){ console.log('Ad load skipped:', err); });
+    });
+})();
+</script>
+</body>

@@ -35,3 +35,22 @@ class Epaper(models.Model):
     publish_date = models.DateField()  # manually select publish date in admin
     def __str__(self):
         return self.title
+
+# ---------------- ADVERTISEMENT ----------------
+class Advertisement(models.Model):
+    POSITION_CHOICES = [
+        ('header', 'Header ke neeche'),
+        ('sidebar', 'Sidebar'),
+        ('footer', 'Footer'),
+        ('in_feed', 'News ke beech me'),
+    ]
+    title = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='ads/')
+    link_url = models.URLField(blank=True, null=True)
+    position = models.CharField(max_length=20, choices=POSITION_CHOICES, default='sidebar')
+    is_active = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.title} ({self.position})'

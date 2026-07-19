@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, News, Epaper
+from .models import Category, News, Epaper, Advertisement
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -16,3 +16,11 @@ class NewsAdmin(admin.ModelAdmin):
 @admin.register(Epaper)
 class EpaperAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'publish_date')
+
+
+@admin.register(Advertisement)
+class AdvertisementAdmin(admin.ModelAdmin):
+    list_display = ('id', 'title', 'position', 'is_active', 'order', 'created_at')
+    list_filter = ('position', 'is_active')
+    list_editable = ('is_active', 'order')
+    search_fields = ('title',)

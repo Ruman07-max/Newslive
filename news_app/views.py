@@ -2,7 +2,7 @@ from django.shortcuts import render # ye abhi hua hai
 from django.http import JsonResponse
 from django.views import View
 from django.conf import settings
-from .models import News, Category, Epaper
+from .models import News, Category, Epaper, Advertisement
 from django.http import JsonResponse
 from rest_framework.views import APIView
 
@@ -58,3 +58,20 @@ class WeatherAPI(APIView):
 # ---------------- HOME PAGE ----------------
 def home(request):
     return render(request, 'index.html')
+# ---------------- ADVERTISEMENT LIST ----------------
+class AdvertisementList(View):
+    def get(self, request):
+        position = request.GET.get('position')
+        ads_qs = Advertisement.objects.filter(is_active=True).order_by('order')
+        if position:
+            ads_qs = ads_qs.filter(position=position)
+        ads_list = []
+        for a in ads_qs:
+            ads_list.append({
+                'id': a.id,
+                'title': a.title,
+                'image': request.build_absolute_uri(a.image.url) if a.image else None,
+                'link_url': a.link_url,
+                'position': a.position,
+            })
+        return JsonResponse(ads_list, safe=False)
