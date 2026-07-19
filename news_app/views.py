@@ -76,3 +76,7 @@ class AdvertisementList(View):
                 'position': a.position,
             })
         return JsonResponse(ads_list, safe=False)
+
+# ---------------- PRIVACY POLICY ----------------
+def privacy_policy(request):
+    return render(request, 'privacy-policy.html')
