@@ -1,10 +1,10 @@
 import requests
 from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.views import View
 from django.conf import settings
 from .models import News, Category, Epaper, Advertisement
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from rest_framework.views import APIView
 
 # ---------------- NEWS LIST ----------------
@@ -142,3 +142,7 @@ class AdvertisementList(View):
 # ---------------- PRIVACY POLICY ----------------
 def privacy_policy(request):
     return render(request, 'privacy-policy.html')
+
+def robots_txt(request):
+    content = "User-agent: *\nAllow: /\n\nSitemap: https://rahnumamanzil.com/sitemap.xml\n"
+    return HttpResponse(content, content_type="text/plain")
