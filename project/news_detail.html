@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-RH6C8V1M4C"></script>
     <script>
@@ -11,9 +13,12 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahnuma-Manzil</title>
-    {% load static %}
-<link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <title>{{ news.title }} - Rahnuma Manzil</title>
+    <meta name="description" content="{{ news.description|truncatechars:160 }}">
+    <meta property="og:title" content="{{ news.title }}">
+    <meta property="og:description" content="{{ news.description|truncatechars:160 }}">
+    <meta property="og:image" content="{{ news.image.url }}">
+    <meta property="og:type" content="article">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700&family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -1182,7 +1187,6 @@
             }
         }
     </style>
-</head>
 <body>
     <!-- ENHANCEMENT: Back to top button -->
     <div class="back-to-top" id="backToTop" aria-label="सबसे ऊपर जाएं">
@@ -1206,15 +1210,15 @@
             
             <div class="header-actions">
                 <button id="subscribeBtn" style="background: var(--primary-red); color: white; border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 4px; transition: background 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red-dark)'" onmouseout="this.style.backgroundColor='var(--primary-red)'">Subscribe</button>
-                <a href="epaper" class="nav-epaper-link" style="display: inline-flex; align-items: center; color: var(--primary-red); font-weight: 600; text-decoration: none; margin-left: 15px; padding: 8px 15px; border: 2px solid var(--primary-red); border-radius: 4px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red)'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--primary-red)'">
+                <a href="/#epaper-section" class="nav-epaper-link" style="display: inline-flex; align-items: center; color: var(--primary-red); font-weight: 600; text-decoration: none; margin-left: 15px; padding: 8px 15px; border: 2px solid var(--primary-red); border-radius: 4px; transition: all 0.3s;" onmouseover="this.style.backgroundColor='var(--primary-red)'; this.style.color='white'" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--primary-red)'">
                     <i class="fas fa-newspaper" style="margin-right: 8px;"></i>
-                  E-Paper
+                    E-Paper
                 </a>
             </div>
         </div>
         
         <div class="logo-container">
-           <a href="#" class="logo"><img src="/static/rahnuma-manzil-new-logo.jpg" alt="Rahnuma Manzil" style="max-height: 130px; width: auto; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid #e5e5e5;"></a>
+            <a href="#" class="logo"><img src="/static/rahnuma-manzil-new-logo.jpg" alt="Rahnuma Manzil" style="max-height: 130px; width: auto; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid #e5e5e5;"></a>
             
         </div>
         <div id="adSlot-header" style="display:none; text-align:center; margin:15px auto; max-width:900px;">
@@ -1244,89 +1248,21 @@
             </ul>
         </nav>
     </header>
-    
-    <!-- MAIN CONTENT - ENHANCED LAYOUT -->
-    <main class="main-container">
-        <!-- LEFT COLUMN - SMALL NEWS WITH IMAGES -->
-        <section class="left-column" aria-label="ताज़ा खबरें">
-            <h2 class="section-title"> News Updates
-</h2>
-            <div id="smallNewsContainer">
-                <!-- ENHANCEMENT: Small news now includes images -->
-                <div class="loading">समाचार लोड हो रहे हैं...</div>
+    <main class="main-container" style="display:block; max-width:900px; margin:30px auto; padding:0 20px;">
+        <article>
+            <h1 style="font-size:32px; margin-bottom:10px; color:var(--dark-gray); line-height:1.3;">{{ news.title }}</h1>
+            <div style="color:var(--medium-gray); font-size:14px; margin-bottom:20px;">
+                {% if news.reporter %}<span>{{ news.reporter }}</span> | {% endif %}
+                <span>{{ news.date }}</span> | <span>{{ news.category.name }}</span>
             </div>
-            
-            <!-- ENHANCEMENT: Added weather widget in left column -->
-            <div class="sidebar-widget weather-widget" style="cursor:pointer;" onclick="window.open('https://www.google.com/search?q=weather+ranchi', '_blank')" title="Click for full weather details">
-                <h3 class="widget-title">Today's Weather</h3>
-                <i class="fas fa-cloud-sun" id="weatherIcon" style="font-size:36px; color:var(--accent-blue); display:block; margin-bottom:8px;"></i>
-                <div class="temperature" id="weatherTemp">32°C</div>
-                <div class="weather-desc" id="weatherDesc">Partly Sunny</div>
-                <div style="font-size: 14px; color: var(--medium-gray); margin-bottom:10px;">Ranchi</div>
-                <div style="display:flex; justify-content:space-around; padding:10px 0; border-top:1px solid var(--border-color); border-bottom:1px solid var(--border-color); margin:10px 0; font-size:13px;">
-                    <div><i class="fas fa-tint" style="color:var(--accent-blue);"></i> <span id="weatherHumidity">--</span>%</div>
-                    <div><i class="fas fa-wind" style="color:var(--accent-blue);"></i> <span id="weatherWind">--</span> km/h</div>
-                    <div><i class="fas fa-cloud-rain" style="color:var(--accent-blue);"></i> <span id="weatherRain">--</span>%</div>
-                </div>
-                <div id="weatherForecast" style="display:flex; justify-content:space-between; gap:4px;"></div>
-                <div style="font-size:12px; color:var(--medium-gray); margin-top:8px;">Tap for full forecast &rarr;</div>
+            {% if news.image %}
+            <img src="{{ news.image.url }}" alt="{{ news.title }}" style="width:100%; max-height:500px; object-fit:cover; border-radius:8px; margin-bottom:20px;">
+            {% endif %}
+            <div style="font-size:18px; line-height:1.8; color:var(--dark-gray); white-space:pre-line;">
+                {{ news.description }}
             </div>
-        </section>
-        
-        <!-- MIDDLE COLUMN - BIG MAIN NEWS -->
-        <section class="middle-column" aria-label="मुख्य समाचार">
-            <div id="bigNewsContainer">
-                <div class="news-placeholder"></div>
-            </div>
-            <div id="adSlot-in_feed" style="display:none; margin:25px 0;">
-                <div id="adContent-in_feed"></div>
-            </div>
-            
-            
-        </section>
-        
-        <!-- RIGHT COLUMN - ENHANCED SIDEBAR -->
-        <section class="right-column" aria-label="प्रमुख खबरें और विज्ञापन">
-            <h2 class="section-title">Top News</h2>
-            <div id="mediumNewsContainer">
-                <div class="loading">समाचार लोड हो रहे हैं...</div>
-            </div>
-            
-            <!-- ENHANCEMENT: Professional ad placeholder -->
-            <div class="sidebar-widget" id="adSlot-sidebar" style="display:none;">
-                <h3 class="widget-title">Advertisement</h3>
-                <div class="ad-placeholder" id="adContent-sidebar" style="height:auto; padding:0; background:none;">
-                </div>
-            </div>
-            
-            <!-- ENHANCEMENT: Quick links widget -->
-            <div class="sidebar-widget">
-                <h3 class="widget-title">Quick Links</h3>
-                <ul class="footer-links" style="border: none; padding: 0;">
-                    <li><a href="#"><i class="fas fa-calendar-alt"></i> Today's Date</a></li>
-                   <li>
-    <a href="https://www.nseindia.com/" target="_blank">
-        <i class="fas fa-rupee-sign"></i> Stock Market
-    </a>
-</li>
-
-                    <li><a href="https://mausam.imd.gov.in/"><i class="fas fa-cloud-sun"></i>Weather Update</a></li>
-                    <li><a href="#epaper-section"><i class="fas fa-newspaper"></i>E-Paper</a></li>
-                </ul>
-            </div>
-        </section>
+        </article>
     </main>
-    
-    <!-- E-PAPER SECTION ENHANCEMENT -->
-    <section class="epaper-section" id="epaper-section">
-        <h2 class="section-title">E-Paper</h2>
-        <p style="color: var(--medium-gray); margin-bottom: 20px; font-size: 16px;">Today's E-Paper</p>
-        <div id="epaperContainer" class="epaper-grid">
-            <div class="loading">Loading E-Paper...</div>
-        </div>
-    </section>
-    
-    <!-- ENHANCEMENT: Professional footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-section">
@@ -1395,163 +1331,17 @@
             </div>
         </div>
     </footer>
-    
-    <!-- MODAL ENHANCEMENT -->
-    <div class="modal-overlay" id="newsModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-        <div class="modal-content">
-            <button class="modal-close" id="modalClose" aria-label="मोडल बंद करें">&times;</button>
-            <img id="modalImage" src="" alt="" class="modal-image" onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.className='modal-image img-fallback';">
-            <div id="modalCategory" class="big-news-category">राजनीति</div>
-            <h2 id="modalTitle" class="modal-title">समाचार शीर्षक</h2>
-            <p id="modalDescription" class="modal-description">
-                समाचार का पूरा विवरण यहाँ दिखाया जाएगा।
-            </p>
-            <div id="modalMeta" class="modal-meta">
-                <span id="modalReporter">Reporter: Known Source</span>
-                <span id="modalDate">23 May 2024</span>
-            </div>
-            <a id="modalReadMoreBtn" href="#" style="display:inline-block; margin-top:15px; background:var(--primary-red); color:white; padding:10px 20px; border-radius:4px; text-decoration:none; font-weight:600;">پوری خبر پڑھیں &rarr;</a>
-        </div>
-    </div>
-
     <script>
-        // API Endpoints
-       const NEWS_API = '/api/news/';
-const CATEGORIES_API = '/api/categories/';
-const EPAPER_API = '/api/epaper/';
-const WEATHER_API = '/api/weather/';
-const MEDIA_BASE_URL = '';
-        // ENHANCEMENT: Sample images for fallback - Hindi news themed
-        const PLACEHOLDER_IMAGES = [
-            'https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1504711434969-e33886168f5c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1552315192-3c5c2f4b4c67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-            'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
-        ];
-        
-        // DOM Elements
+        const CATEGORIES_API = 'https://rahnumamanzil.com/api/categories/';
         const categoriesList = document.getElementById('categoriesList');
-        const smallNewsContainer = document.getElementById('smallNewsContainer');
-        const bigNewsContainer = document.getElementById('bigNewsContainer');
-        const mediumNewsContainer = document.getElementById('mediumNewsContainer');
-        const epaperContainer = document.getElementById('epaperContainer');
-        const newsModal = document.getElementById('newsModal');
-        const modalClose = document.getElementById('modalClose');
-        const currentDateTime = document.getElementById('currentDateTime');
-        const backToTop = document.getElementById('backToTop');
-        const weatherTemp = document.getElementById('weatherTemp');
-        const weatherDesc = document.getElementById('weatherDesc');
-        
-        // Global news data
-        let allNews = [];
-        let filteredNews = [];
-        let categories = [];
-        
-        // ENHANCEMENT: Initialize the page with better structure
-        document.addEventListener('DOMContentLoaded', function() {
-            updateDateTime();
-            loadWeather();
-            loadCategories();
-            loadNews();
-            loadEpaper();
-            setupEventListeners();
-            
-            // Update date/time every minute
-            setInterval(updateDateTime, 60000);
-            
-            // ENHANCEMENT: Back to top functionality
-            window.addEventListener('scroll', handleScroll);
-        });
-        
-        // ENHANCEMENT: Handle scroll for back to top button
-        function handleScroll() {
-            if (window.scrollY > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        }
-        
-        // ENHANCEMENT: Update current date and time with better format
-       function updateDateTime() {
-    try {
-        const now = new Date();
 
-        const options = {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-            timeZone: 'Asia/Kolkata',
-            timeZoneName: 'short'
-        };
-
-        const dateTimeStr = now.toLocaleString('en-IN', options);
-
-        currentDateTime.textContent = dateTimeStr;
-
-    } catch (error) {
-        console.error('Error updating date/time:', error);
-        currentDateTime.textContent = new Date().toLocaleDateString('en-IN');
-    }
-}
-        // ENHANCEMENT: Load weather data
-        async function loadWeather() {
-            try {
-                const response = await fetch(WEATHER_API);
-                if (response.ok) {
-                    const data = await response.json();
-                    if (data.temperature !== undefined) {
-                        weatherTemp.textContent = `${data.temperature}°C`;
-                        weatherDesc.textContent = data.description;
-
-                        const iconEl = document.getElementById('weatherIcon');
-                        if (iconEl && data.icon) {
-                            iconEl.className = 'fas ' + data.icon;
-                        }
-
-                        const humEl = document.getElementById('weatherHumidity');
-                        const windEl = document.getElementById('weatherWind');
-                        const rainEl = document.getElementById('weatherRain');
-                        if (humEl) humEl.textContent = data.humidity ?? '--';
-                        if (windEl) windEl.textContent = data.wind_speed ?? '--';
-                        if (rainEl) rainEl.textContent = data.rain_chance ?? '--';
-
-                        const forecastEl = document.getElementById('weatherForecast');
-                        if (forecastEl && data.forecast && data.forecast.length > 0) {
-                            forecastEl.innerHTML = data.forecast.slice(0, 5).map(f => `
-                                <div style="text-align:center; font-size:11px; flex:1;">
-                                    <div style="font-weight:600;">${f.day}</div>
-                                    <i class="fas ${f.icon}" style="color:var(--accent-blue); font-size:16px; margin:4px 0; display:block;"></i>
-                                    <div style="color:var(--accent-blue);">${f.max_temp}°</div>
-                                    <div style="color:var(--medium-gray);">${f.min_temp}°</div>
-                                </div>
-                            `).join('');
-                        }
-                        return;
-                    }
-                }
-            } catch (error) {
-                console.log('Using default weather data');
-            }
-
-            weatherTemp.textContent = '32°C';
-            weatherDesc.textContent = 'Partly Sunny';
-        }
-        
-        // Load categories from API
-        async function loadCategories() {
+        async function loadDetailPageCategories() {
             try {
                 const response = await fetch(CATEGORIES_API);
-                if (!response.ok) throw new Error(`Categories API error: ${response.status}`);
-                
+                if (!response.ok) throw new Error('Categories API error');
                 const data = await response.json();
-                
-                // Handle both array and object responses
+
+                let categories = [];
                 if (Array.isArray(data)) {
                     categories = data.map(cat => typeof cat === 'object' ? cat.name : cat);
                 } else if (data.results) {
@@ -1561,545 +1351,59 @@ const MEDIA_BASE_URL = '';
                 } else {
                     categories = Object.values(data);
                 }
-                
-                renderCategories();
+
+                if (categoriesList && categories.length > 0) {
+                    const allItem = categoriesList.querySelector('[data-category="all"]');
+                    categoriesList.innerHTML = '';
+                    if (allItem) categoriesList.appendChild(allItem);
+
+                    categories.forEach(categoryName => {
+                        if (categoryName && categoryName !== 'all') {
+                            const li = document.createElement('li');
+                            li.className = 'category-item';
+                            li.textContent = categoryName;
+                            li.dataset.category = categoryName;
+                            categoriesList.appendChild(li);
+                        }
+                    });
+
+                    document.querySelectorAll('.category-item').forEach(item => {
+                        item.addEventListener('click', function() {
+                            window.location.href = '/';
+                        });
+                    });
+                }
             } catch (error) {
                 console.error('Error loading categories:', error);
-                // Use default categories if API fails
-                categories = ['राजनीति', 'खेल', 'मनोरंजन', 'व्यापार', 'देश', 'विदेश', 'शिक्षा', 'स्वास्थ्य'];
-                renderCategories();
             }
-        }
-        
-        // ENHANCEMENT: Render categories with improved visual design
-        function renderCategories() {
-            // Keep the "All" category
-            const defaultCategory = categoriesList.querySelector('[data-category="all"]');
-            if (!defaultCategory) {
-                const allCat = document.createElement('li');
-                allCat.className = 'category-item active';
-                allCat.dataset.category = 'all';
-                allCat.textContent = 'सभी समाचार';
-                categoriesList.appendChild(allCat);
-            } else {
-                categoriesList.innerHTML = '';
-                categoriesList.appendChild(defaultCategory);
-            }
-            
-            // Add API categories
-            if (categories && categories.length > 0) {
-                categories.forEach(category => {
-                    const categoryName = typeof category === 'object' ? category.name : category;
-                    if (categoryName && categoryName !== 'all') {
-                        const categoryItem = document.createElement('li');
-                        categoryItem.className = 'category-item';
-                        categoryItem.textContent = categoryName;
-                        categoryItem.dataset.category = categoryName;
-                        categoriesList.appendChild(categoryItem);
-                    }
-                });
-            }
-            
-            // Add click event to all category items
-            document.querySelectorAll('.category-item').forEach(item => {
-                item.addEventListener('click', function() {
-                    document.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
-                    this.classList.add('active');
-                    
-                    const selectedCategory = this.dataset.category;
-                    filterNewsByCategory(selectedCategory);
-                    
-                    // ENHANCEMENT: Smooth scroll to top on category change
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            });
-        }
-        
-        // ENHANCEMENT: Load news with better error handling
-        async function loadNews() {
-            try {
-                smallNewsContainer.innerHTML = '<div class="loading">समाचार लोड हो रहे हैं...</div>';
-                bigNewsContainer.innerHTML = '<div class="news-placeholder"></div>';
-                mediumNewsContainer.innerHTML = '<div class="loading">समाचार लोड हो रहे हैं...</div>';
-                
-                const response = await fetch(NEWS_API);
-                if (!response.ok) throw new Error(`News API error: ${response.status}`);
-                
-                const data = await response.json();
-                
-                // Handle different API response formats
-                if (Array.isArray(data)) {
-                    allNews = data;
-                } else if (data.results) {
-                    allNews = data.results;
-                } else if (data.news) {
-                    allNews = data.news;
-                } else {
-                    allNews = Object.values(data);
-                }
-                
-                filteredNews = [...allNews];
-                
-                // ENHANCEMENT: Add fallback images if missing
-                allNews.forEach(newsItem => {
-                    if (!newsItem.image || newsItem.image.trim() === '') {
-                        // Assign a random placeholder image
-                        const randomIndex = Math.floor(Math.random() * PLACEHOLDER_IMAGES.length);
-                        newsItem.image = PLACEHOLDER_IMAGES[randomIndex];
-                    }
-                });
-                
-                // Distribute news according to layout rules
-                distributeNews();
-            } catch (error) {
-                console.error('Error loading news:', error);
-                // Show error in UI with retry option
-                const errorMsg = `
-                    <div class="error-message">
-                        <p>समाचार लोड करने में त्रुटि। कृपया बाद में पुनः प्रयास करें।</p>
-                        <button onclick="loadNews()" style="background: var(--primary-red); color: white; border: none; padding: 10px 20px; margin-top: 15px; border-radius: 4px; cursor: pointer;">
-                            पुनः प्रयास करें
-                        </button>
-                    </div>
-                `;
-                smallNewsContainer.innerHTML = errorMsg;
-                bigNewsContainer.innerHTML = errorMsg;
-                mediumNewsContainer.innerHTML = errorMsg;
-            }
-        }
-        
-        // ENHANCEMENT: Distribute news into columns with image support
-        function distributeNews() {
-            if (!filteredNews || filteredNews.length === 0) {
-                showNoNewsMessage();
-                return;
-            }
-            
-            // Big main news (news[0]) - Middle column
-            renderBigNews(filteredNews[0]);
-            
-            // Medium news (news[1-3]) - Right column
-            const mediumNews = filteredNews.slice(1, 4);
-            renderMediumNews(mediumNews);
-            
-            // Small news (news[4+]) - Left column
-            const smallNews = filteredNews.slice(4);
-            renderSmallNews(smallNews);
-        }
-        
-        // ENHANCEMENT: Helper function to get image URL with better fallback
-        function getImageUrl(imagePath) {
-            if (!imagePath || imagePath.trim() === '') {
-                // Return a random placeholder
-                const randomIndex = Math.floor(Math.random() * PLACEHOLDER_IMAGES.length);
-                return PLACEHOLDER_IMAGES[randomIndex];
-            }
-            
-            // Check if it's already a full URL
-            if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-                return imagePath;
-            }
-            
-            // Check if it starts with /media/
-            if (imagePath.startsWith('/media/')) {
-                return MEDIA_BASE_URL + imagePath;
-            }
-            
-            // Otherwise prepend /media/
-            return MEDIA_BASE_URL + '/media/' + imagePath;
-        }
-        
-        // ENHANCEMENT: Render big main news with improved design
-        function renderBigNews(newsItem) {
-            if (!newsItem) {
-                bigNewsContainer.innerHTML = '<div class="loading">कोई प्रमुख समाचार उपलब्ध नहीं है</div>';
-                return;
-            }
-            
-            const category = newsItem.category || 'समाचार';
-            const description = newsItem.description || newsItem.summary || '';
-            const imageUrl = getImageUrl(newsItem.image);
-            const reporter = newsItem.reporter || newsItem.author || 'ज्ञात स्रोत';
-            const date = newsItem.date || newsItem.published_date || new Date().toLocaleDateString('hi-IN');
-            const newsId = newsItem.id || newsItem._id || '';
-            
-            bigNewsContainer.innerHTML = `
-                <div class="big-news-container" data-id="${newsId}">
-                    <img src="${imageUrl}" alt="${newsItem.title || 'समाचार छवि'}" class="big-news-image" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMAGES[0]}'; this.className='big-news-image img-fallback';">
-                    <div class="big-news-content">
-                        <div class="big-news-category">${category}</div>
-                        <h2 class="big-news-title">${newsItem.title || 'शीर्षक उपलब्ध नहीं'}</h2>
-                        <p class="big-news-description">${description}</p>
-                        <div class="big-news-meta">
-                            <span>रिपोर्टर: ${reporter}</span>
-                            <span>${date}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            // Add click event to open modal
-            bigNewsContainer.querySelector('.big-news-container').addEventListener('click', () => {
-                openNewsModal(newsItem);
-            });
-        }
-        
-        // ENHANCEMENT: Render medium news items with improved design
-        function renderMediumNews(newsItems) {
-            if (!newsItems || newsItems.length === 0) {
-                mediumNewsContainer.innerHTML = '<div class="loading">कोई प्रमुख समाचार उपलब्ध नहीं है</div>';
-                return;
-            }
-            
-            mediumNewsContainer.innerHTML = '';
-            
-            newsItems.forEach(item => {
-                const category = item.category || 'समाचार';
-                const description = item.description || '';
-                const imageUrl = getImageUrl(item.image);
-                const reporter = item.reporter || 'ज्ञात स्रोत';
-                const date = item.date || new Date().toLocaleDateString('hi-IN');
-                const newsId = item.id || '';
-                
-                const newsElement = document.createElement('div');
-                newsElement.className = 'medium-news-item';
-                newsElement.dataset.id = newsId;
-                newsElement.innerHTML = `
-                    <img src="${imageUrl}" alt="${item.title || 'समाचार छवि'}" class="medium-news-image" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMAGES[1]}'; this.className='medium-news-image img-fallback';">
-                    <div>
-                        <h3 class="medium-news-title">${item.title || 'शीर्षक उपलब्ध नहीं'}</h3>
-                        <div class="medium-news-meta">
-                            <span>${category}</span>
-                            <span>${date}</span>
-                        </div>
-                    </div>
-                `;
-                
-                newsElement.addEventListener('click', () => {
-                    openNewsModal(item);
-                });
-                
-                mediumNewsContainer.appendChild(newsElement);
-            });
-        }
-        
-        // ENHANCEMENT: Render small news items with images
-        function renderSmallNews(newsItems) {
-            if (!newsItems || newsItems.length === 0) {
-                smallNewsContainer.innerHTML = '<div class="loading">कोई ताज़ा समाचार उपलब्ध नहीं है</div>';
-                return;
-            }
-            
-            smallNewsContainer.innerHTML = '';
-            
-            newsItems.forEach(item => {
-                const category = item.category || 'समाचार';
-                const date = item.date || new Date().toLocaleDateString('hi-IN');
-                const newsId = item.id || '';
-                const imageUrl = getImageUrl(item.image);
-                
-                const newsElement = document.createElement('div');
-                newsElement.className = 'small-news-item';
-                newsElement.dataset.id = newsId;
-                newsElement.innerHTML = `
-                    <img src="${imageUrl}" alt="${item.title || 'समाचार छवि'}" class="small-news-image" onerror="this.onerror=null; this.src='${PLACEHOLDER_IMAGES[2]}'; this.className='small-news-image img-fallback';">
-                    <div class="small-news-content">
-                        <h4 class="small-news-title">${item.title || 'शीर्षक उपलब्ध नहीं'}</h4>
-                        <div class="small-news-meta">
-                            <span>${category}</span>
-                            <span>${date}</span>
-                        </div>
-                    </div>
-                `;
-                
-                newsElement.addEventListener('click', () => {
-                    openNewsModal(item);
-                });
-                
-                smallNewsContainer.appendChild(newsElement);
-            });
-        }
-        
-        // Filter news by category
-        function filterNewsByCategory(category) {
-            if (category === 'all') {
-                filteredNews = [...allNews];
-            } else {
-                filteredNews = allNews.filter(item => item.category === category);
-            }
-            
-            distributeNews();
-        }
-        
-        // ENHANCEMENT: Show message when no news available
-        function showNoNewsMessage() {
-            const noNewsMsg = `
-                <div class="error-message" style="background-color: #f9f9f9; border: 1px dashed #ddd;">
-                    <p>इस श्रेणी में कोई समाचार उपलब्ध नहीं है</p>
-                    <p style="font-size: 14px; margin-top: 10px;">कृपया अन्य श्रेणी चुनें या बाद में पुनः प्रयास करें</p>
-                </div>
-            `;
-            smallNewsContainer.innerHTML = noNewsMsg;
-            bigNewsContainer.innerHTML = noNewsMsg;
-            mediumNewsContainer.innerHTML = noNewsMsg;
-        }
-        
-        // ENHANCEMENT: Load e-paper with better error handling
-        async function loadEpaper() {
-            try {
-                const response = await fetch(EPAPER_API);
-                if (!response.ok) throw new Error(`E-paper API error: ${response.status}`);
-                
-                const data = await response.json();
-                
-                // Handle different response formats
-                let epapers = [];
-                if (Array.isArray(data)) {
-                    epapers = data;
-                } else if (data.results) {
-                    epapers = data.results;
-                } else if (data.epapers) {
-                    epapers = data.epapers;
-                } else {
-                    epapers = Object.values(data);
-                }
-                
-                renderEpaper(epapers);
-            } catch (error) {
-                console.error('Error loading e-paper:', error);
-                // Show fallback e-paper
-                renderEpaper([
-                    {
-                        title: 'आज का अखबार',
-                        pdf: 'epaper/sample.pdf',
-                        publish_date: new Date().toLocaleDateString('hi-IN')
-                    },
-                    {
-                        title: 'कल का अखबार',
-                        pdf: 'epaper/yesterday.pdf',
-                        publish_date: new Date(Date.now() - 86400000).toLocaleDateString('hi-IN')
-                    }
-                ]);
-            }
-        }
-        
-        // ENHANCEMENT: Render e-paper items with improved design
-        function renderEpaper(epapers) {
-            if (!epapers || epapers.length === 0) {
-                epaperContainer.innerHTML = '<div class="error-message">ई-अखबार उपलब्ध नहीं है</div>';
-                return;
-            }
-
-            epaperContainer.innerHTML = '';
-
-            epapers.forEach(paper => {
-                // Construct proper PDF URL
-                let pdfUrl = '#';
-                
-                if (paper.pdf && paper.pdf !== '#') {
-                    // Check if it's already a full URL
-                    if (paper.pdf.startsWith('http://') || paper.pdf.startsWith('https://')) {
-                        pdfUrl = paper.pdf;
-                    } 
-                    // Check if it starts with /media/
-                    else if (paper.pdf.startsWith('/media/')) {
-                        pdfUrl = MEDIA_BASE_URL + paper.pdf;
-                    }
-                    // Otherwise prepend /media/
-                    else {
-                        pdfUrl = MEDIA_BASE_URL + '/media/' + paper.pdf;
-                    }
-                }
-                
-                const paperElement = document.createElement('div');
-                paperElement.className = 'epaper-card';
-                paperElement.innerHTML = `
-                    <h3 class="epaper-title">${paper.title || 'ई-अखबार'}</h3>
-                    <div class="epaper-date">
-                        <i class="far fa-calendar-alt"></i>
-                        ${paper.publish_date || paper.date || ''}
-                    </div>
-                    <a href="${pdfUrl}" target="_blank" rel="noopener noreferrer" class="epaper-link">
-                        <i class="fas fa-newspaper epaper-icon"></i>
-                        अखबार पढ़ें
-                    </a>
-                `;
-
-                epaperContainer.appendChild(paperElement);
-            });
         }
 
-        // ENHANCEMENT: Open news modal with improved UX
-        function openNewsModal(newsItem) {
-            const modalImage = document.getElementById('modalImage');
-            const modalCategory = document.getElementById('modalCategory');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalDescription = document.getElementById('modalDescription');
-            const modalReporter = document.getElementById('modalReporter');
-            const modalDate = document.getElementById('modalDate');
-            
-            const category = newsItem.category || 'समाचार';
-            const description = newsItem.full_description || newsItem.description || 'कोई विवरण उपलब्ध नहीं है';
-            const imageUrl = getImageUrl(newsItem.image);
-            const reporter = newsItem.reporter || newsItem.author || 'ज्ञात स्रोत';
-            const date = newsItem.date || newsItem.published_date || new Date().toLocaleDateString('hi-IN');
-            
-            modalImage.src = imageUrl;
-            modalImage.alt = newsItem.title || 'समाचार छवि';
-            modalCategory.textContent = category;
-            modalTitle.textContent = newsItem.title || 'शीर्षक उपलब्ध नहीं';
-            modalDescription.textContent = description;
-            modalReporter.textContent = `रिपोर्टर: ${reporter}`;
-            modalDate.textContent = date;
-
-            // SEO: Set full article link
-            const readMoreBtn = document.getElementById('modalReadMoreBtn');
-            if (readMoreBtn && newsItem.id) {
-                const slug = (newsItem.title || 'news').toLowerCase().replace(/[^\u0900-\u097F\u0600-\u06FFa-z0-9\s-]/g, '').trim().replace(/\s+/g, '-');
-                readMoreBtn.href = `/news/${newsItem.id}/${slug}/`;
-            }
-            
-            newsModal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-            
-            // Set focus for accessibility
-            modalClose.focus();
-        }
-        
-        // ENHANCEMENT: Close news modal with better cleanup
-        function closeNewsModal() {
-            newsModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-            
-            // Reset modal content to prevent flash of old content
-            setTimeout(() => {
-                const modalImage = document.getElementById('modalImage');
-                const modalTitle = document.getElementById('modalTitle');
-                modalImage.src = '';
-                modalTitle.textContent = '';
-            }, 300);
-        }
-        
-        // ENHANCEMENT: Setup event listeners with better organization
-        function setupEventListeners() {
-            // Modal close button
-            if (modalClose) {
-                modalClose.addEventListener('click', closeNewsModal);
-            }
-            
-            // Close modal when clicking outside
-            if (newsModal) {
-                newsModal.addEventListener('click', (e) => {
-                    if (e.target === newsModal) {
-                        closeNewsModal();
-                    }
-                });
-            }
-            
-            // Close modal with Escape key
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && newsModal.style.display === 'flex') {
-                    closeNewsModal();
-                }
-            });
-            
-            // Subscribe button
-            const subscribeBtn = document.getElementById('subscribeBtn');
-            if (subscribeBtn) {
-                subscribeBtn.addEventListener('click', () => {
-                    const email = prompt('कृपया अपना ईमेल पता दर्ज करें:');
-                    if (email) {
-                        alert(`सदस्यता के लिए धन्यवाद! हम आपको ${email} पर संपर्क करेंगे।`);
-                    }
-                });
-            }
-            
-            // Back to top button
-            if (backToTop) {
-                backToTop.addEventListener('click', () => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-            
-            // News ticker animation pause on hover
-            const ticker = document.querySelector('.ticker-content');
-            if (ticker) {
-                ticker.addEventListener('mouseenter', () => {
-                    ticker.style.animationPlayState = 'paused';
-                });
-                
-                ticker.addEventListener('mouseleave', () => {
-                    ticker.style.animationPlayState = 'running';
-                });
-            }
-            
-            // Smooth scroll for e-paper link
-            const epaperLink = document.querySelector('.nav-epaper-link');
-            if (epaperLink) {
-                epaperLink.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const epaperSection = document.getElementById('epaper-section');
-                    if (epaperSection) {
-                        epaperSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            }
-            
-            // ENHANCEMENT: Add click handlers for footer social links
-            document.querySelectorAll('.footer-social a').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    alert('यह लिंक डेमो उद्देश्य के लिए है। वास्तविक वेबसाइट में यह सोशल मीडिया प्रोफाइल पर जाएगा।');
-                });
-            });
-        }
-        
-        // ENHANCEMENT: Handle image errors globally with better fallback
-        document.addEventListener('error', function(e) {
-            if (e.target.tagName === 'IMG') {
-                const randomIndex = Math.floor(Math.random() * PLACEHOLDER_IMAGES.length);
-                e.target.src = PLACEHOLDER_IMAGES[randomIndex];
-                e.target.className += ' img-fallback';
-            }
-        }, true);
+        loadDetailPageCategories();
     </script>
-
-</html>
-<script>
-(function() {
-    var positions = ['header','sidebar','footer','in_feed'];
-    positions.forEach(function(position) {
-        fetch('/api/ads/?position=' + position)
-            .then(function(r){ return r.json(); })
-            .then(function(ads){
-                if (ads && ads.length > 0) {
-                    var ad = ads[0];
-                    var slot = document.getElementById('adSlot-' + position);
-                    var content = document.getElementById('adContent-' + position);
-                    if (slot && content) {
-                        var mediaHtml = '';
-                        if (ad.video) {
-                            mediaHtml = '<video src="' + ad.video + '" autoplay loop muted playsinline style="width:100%; border-radius:6px;"></video>';
-                        } else if (ad.image) {
-                            mediaHtml = '<img src="' + ad.image + '" alt="' + ad.title + '" style="width:100%; border-radius:6px;">';
-                        }
-                        content.innerHTML = '<a href="' + (ad.link_url || '#') + '" target="_blank" rel="noopener">' + mediaHtml + '</a>';
-                        slot.style.display = 'block';
-                    }
-                }
-            })
-            .catch(function(err){ console.log('Ad load skipped:', err); });
-    });
-})();
-</script>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-        {pageLanguage: 'ur', includedLanguages: 'en,hi', layout: google.translate.TranslateElement.InlineLayout.SIMPLE},
-        'google_translate_element'
-    );
-}
-</script>
-<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
+</html>
+    <script>
+        function updateDetailPageDateTime() {
+            try {
+                const now = new Date();
+                const options = {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true,
+                    timeZone: 'Asia/Kolkata',
+                    timeZoneName: 'short'
+                };
+                const dateTimeStr = now.toLocaleString('en-IN', options);
+                const el = document.getElementById('currentDateTime');
+                if (el) el.textContent = dateTimeStr;
+            } catch (error) {
+                console.error('Error updating date/time:', error);
+            }
+        }
+        updateDetailPageDateTime();
+        setInterval(updateDetailPageDateTime, 60000);
+    </script>

@@ -26,6 +26,15 @@ class News(models.Model):
         return self.title
 
 
+    def get_absolute_url(self):
+        from django.utils.text import slugify
+        import re
+        slug = self.title.lower()
+        slug = re.sub(r'[^\u0900-\u097F\u0600-\u06FFa-z0-9\s-]', '', slug)
+        slug = slug.strip()
+        slug = re.sub(r'\s+', '-', slug)
+        return f'/news/{self.id}/{slug}/'
+
 class Epaper(models.Model):
     title = models.CharField(max_length=200)
     pdf = models.FileField(
