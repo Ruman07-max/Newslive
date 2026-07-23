@@ -90,34 +90,25 @@
             color: var(--primary-red);
         }
 
-        .logo-container {
-            text-align: center;
-            padding: 30px 20px 25px;
-            position: relative;
-        }
+       .logo-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    margin: 0 auto;
+    position: relative;
+}
+.logo {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-decoration: none;
+    padding: 0;
+}
 
-        .logo {
-            font-family: 'Noto Serif Devanagari', serif;
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--primary-red);
-            text-decoration: none;
-            letter-spacing: -1px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            display: inline-block;
-            position: relative;
-            padding: 0 20px;
-        }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 20px;
-            right: 20px;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary-red), var(--accent-yellow));
-        }
+       
 
         .logo-subtitle {
             font-size: 15px;
@@ -1211,15 +1202,14 @@
                   E-Paper
                 </a>
             </div>
-        </div>
-        
-        <div class="logo-container">
-           <a href="#" class="logo"><img src="/static/rahnuma-manzil-new-logo.jpg" alt="Rahnuma Manzil" style="max-height: 130px; width: auto; max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); border: 1px solid #e5e5e5;"></a>
-            
-        </div>
-        <div id="adSlot-header" style="display:none; text-align:center; margin:15px auto; max-width:900px;">
-            <div id="adContent-header"></div>
-        </div>
+             </div> <!-- header-top ends here -->
+       <div class="logo-container">
+    <a href="/" class="logo">
+        <img src="/static/rahnuma-manzil-new-logo.jpg"
+             alt="Rahnuma Manzil"
+             style="max-height:130px; width:auto; max-width:100%; display:block;">
+    </a>
+</div>
 <!--         
         NEWS TICKER ENHANCEMENT
         <div class="news-ticker">
